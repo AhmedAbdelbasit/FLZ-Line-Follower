@@ -1,10 +1,10 @@
 #ifndef ULTRASONIC_H
 #define ULTRASONIC_H
 
-#define trigPin 8
-#define echoPin 9
+#define TRIG_PIN 8
+#define ECHO_PIN 9
 
-void setup_ultrasonic();
+void setupUltrasonic();
 int calculateDistance();
 
 #endif

@@ -1,20 +1,20 @@
 #include <Servo.h>
 #include "ultrasonic.h"
 
-#define servo 12
+#define SERVO_PIN 12
 
 int distance;
 
 Servo myServo;
 
-void setup_radar() {
+void setupRadar() {
   //seting numbers for the ultrasnic and the servo pins
-  setup_ultrasonic();
-  myServo.attach(servo);
+  setupUltrasonic();
+  myServo.attach(SERVO_PIN);
 }
 
 
-void scan_full_view() {
+void scanFullView() {
   //making the servo rotate from 0 to 90 degree
   for (int i = 0; i <= 90; i++) {
     myServo.write(i);
