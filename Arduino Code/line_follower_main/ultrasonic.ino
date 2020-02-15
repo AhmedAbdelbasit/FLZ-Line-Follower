@@ -1,5 +1,11 @@
 #include "ultrasonic.h"
 
+int timeOut;
+
+void setMaximumDistance(float distance){
+  timeOut = 1000000 * distance / 340.0;
+}
+
 void setupUltrasonic() {
   pinMode(TRIG_PIN, OUTPUT);
   pinMode(ECHO_PIN, INPUT);
@@ -15,7 +21,7 @@ int calculateDistance() {
   delayMicroseconds(10);
 
   digitalWrite(TRIG_PIN, LOW);
-  long duration = pulseIn(ECHO_PIN, HIGH);
+  long duration = pulseIn(ECHO_PIN, HIGH, timeOut);
 
   return (duration * 0.034 / 2);
 }
