@@ -1,12 +1,16 @@
 int robotSpeed = 100;
 
 void setupDCMotors() {
-  pinMode(LEFT_SPEED, INPUT);
-  pinMode(RIGHT_SPEED, INPUT);
+  pinMode(LEFT_SPEED, OUTPUT);
+  pinMode(RIGHT_SPEED, OUTPUT);
   pinMode(LM1, OUTPUT);
   pinMode(LM2, OUTPUT);
   pinMode(RM1, OUTPUT);
   pinMode(RM2, OUTPUT);
+}
+
+void setRobotSpeed(int s){
+  robotSpeed = s;
 }
 
 void setSpeed(int leftSpeed, int rightSpeed) {
@@ -14,18 +18,24 @@ void setSpeed(int leftSpeed, int rightSpeed) {
   analogWrite (RIGHT_SPEED, rightSpeed);
 }
 
+void setLeftDirection(boolean d){
+  digitalWrite (LM1, d);
+  digitalWrite (LM2, !d);
+}
+
+void setRightDirection(boolean d){
+  digitalWrite (RM1, d);
+  digitalWrite (RM2, !d);
+}
+
 void moveForward () {
-  digitalWrite(RM1, HIGH);
-  digitalWrite(RM2, LOW);
-  digitalWrite (LM1, HIGH);
-  digitalWrite (LM2, LOW);
+  setLeftDirection(1);
+  setRightDirection(1);
 }
 
 void moveBackward () {
-  digitalWrite(RM1, LOW);
-  digitalWrite(RM2, HIGH);
-  digitalWrite (LM1, LOW);
-  digitalWrite (LM2, HIGH);
+  setLeftDirection(0);
+  setRightDirection(0);
 }
 
 void stopRobot () {
@@ -33,29 +43,23 @@ void stopRobot () {
 }
 
 void moveRight() {
-  digitalWrite (LM1, HIGH);
-  digitalWrite(LM2, LOW);
-  digitalWrite (RM1, LOW);
-  digitalWrite(RM2, LOW);
+  setLeftDirection(1);
+  setRightDirection(0);
 }
 
 void moveLeft() {
-  digitalWrite(RM1, HIGH);
-  digitalWrite(RM2, LOW);
-  digitalWrite(LM1, LOW);
-  digitalWrite(LM2, LOW);
+  setLeftDirection(0);
+  setRightDirection(1);
 }
 
 
 void setLeftSpeed(float output) {
   float s = robotSpeed + output;
   if ( s > 0) {
-    digitalWrite(LM1, HIGH);
-    digitalWrite(LM2, LOW);
+    setLeftDirection(1);
     analogWrite(LEFT_SPEED, s);
   } else {
-    digitalWrite(LM1, LOW);
-    digitalWrite(LM2, HIGH);
+    setLeftDirection(0);
     analogWrite(LEFT_SPEED, -s);
   }
 }
@@ -63,12 +67,10 @@ void setLeftSpeed(float output) {
 void setRightSpeed(float output) {
   float s = robotSpeed + output;
   if ( s > 0) {
-    digitalWrite(RM1, HIGH);
-    digitalWrite(RM2, LOW);
+    setRightDirection(1);
     analogWrite(RIGHT_SPEED, s);
   } else {
-    digitalWrite(RM1, LOW);
-    digitalWrite(RM2, HIGH);
+    setRightDirection(0);
     analogWrite(RIGHT_SPEED, -s);
   }
 }

@@ -9,11 +9,16 @@
 #define RM2 7
 
 void setupDCMotors();
+void setRobotSpeed(int s);
+void setSpeed(int leftSpeed, int rightSpeed);
+void setLeftDirection(boolean d);
+void setRightDirection(boolean d);
 void moveForward ();
 void moveBackward();
 void stopRobot ();
 void moveRight() ;
 void moveLeft();
-void setSpeed(int leftSpeed, int rightSpeed) ;
+void setLeftSpeed(float output);
+void setRightSpeed(float output);
 
 #endif
