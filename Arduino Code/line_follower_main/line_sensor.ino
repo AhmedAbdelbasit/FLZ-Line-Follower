@@ -17,24 +17,24 @@ void calibrateSensors() {
   for (int i = 0 ; i < NUM_OF_SAMPLES ; i++) {
     for (int j = 0 ; j < NUM_OF_SENSORS ; j++) {
       x = analogRead(SENSOR_0 + j);
-      if(x < minimum[j])
+      if (x < minimum[j])
         minimum[j] = x;
       else if (x > maximum[j])
         maximum[j] = x;
     }
   }
 
-  for(int i=0 ; i<NUM_OF_SENSORS ; i++){
-    threshold[i] = (minimum[i] + maximum[i])/2;
+  for (int i = 0 ; i < NUM_OF_SENSORS ; i++) {
+    threshold[i] = (minimum[i] + maximum[i]) / 2;
   }
 }
 
 
 byte readLineSensors() {
   byte lineReading = 0;
-  for (int i = SENSOR_0 ; i < SENSOR_0 + NUM_OF_SENSORS ; i++) {
+  for (int i = 0 ; i < NUM_OF_SENSORS ; i++) {
     lineReading = lineReading << 1;
-    lineReading |= (analogRead(i) < THRESHOLD);
+    lineReading |= (analogRead(SENSOR_0 + i) < threshold[i]);
   }
   return lineReading;
 }
@@ -60,22 +60,22 @@ int getLineError(byte reading) {
       return 3;
     case (0b00001):
       return 4;
-    /* 
-    case (0b00000):
-      return ;
-    case (0b11100):
-      return ;
-    case (0b01110):
-      return ;
-    case (0b00111):
-      return ;
-    case (0b11110):
-      return ;
-    case (0b01111):
-      return ;
-    case (0b11111):
-      return ;
-    */
+      /*
+        case (0b00000):
+        return ;
+        case (0b11100):
+        return ;
+        case (0b01110):
+        return ;
+        case (0b00111):
+        return ;
+        case (0b11110):
+        return ;
+        case (0b01111):
+        return ;
+        case (0b11111):
+        return ;
+      */
   }
 }
 
