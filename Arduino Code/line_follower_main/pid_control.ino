@@ -1,13 +1,12 @@
-#define SAMPLE_TIME 0.020
+
 
 float errorSum;
 float errorDerivative;
 float previousError;
-float output;
 
-float Kp = 1;
-float Ki = 1;
-float Kd = 1;
+float Kp = 12;
+float Ki = 0.1;
+float Kd = 0;
 
 void setupPID(float p, float i, float d) {
   Kp = p;
@@ -15,14 +14,16 @@ void setupPID(float p, float i, float d) {
   Kd = d;
 }
 
-float calculatePID(float error){
+float calculatePID(float error) {
   errorSum += error * SAMPLE_TIME;
-  errorDerivative = (error - previousError)/SAMPLE_TIME;
+  errorDerivative = (error - previousError) / SAMPLE_TIME;
   previousError = error;
-  return (Kp * error) + (Ki * errorSum) + (Kd * errorDerivative);
+  float o = (Kp * error) + (Ki * errorSum) + (Kd * errorDerivative);
+  Serial.println(o);
+  return o;
 }
 
-void applyOutput(float Output){
-   setLeftSpeed(output);
-   setRightSpeed(-output);
+void applyOutput(float output) {
+  setLeftSpeed(-output);
+  setRightSpeed(output);
 }

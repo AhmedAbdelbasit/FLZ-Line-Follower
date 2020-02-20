@@ -9,6 +9,7 @@ void setMaximumDistance(float distance){
 void setupUltrasonic() {
   pinMode(TRIG_PIN, OUTPUT);
   pinMode(ECHO_PIN, INPUT);
+  setMaximumDistance(100);
 }
 
 //function to calculate the distance

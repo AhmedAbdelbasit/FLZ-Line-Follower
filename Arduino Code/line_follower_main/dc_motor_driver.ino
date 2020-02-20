@@ -1,4 +1,4 @@
-int robotSpeed = 100;
+int robotSpeed = 90;
 
 void setupDCMotors() {
   pinMode(LEFT_SPEED, OUTPUT);
@@ -39,7 +39,10 @@ void moveBackward () {
 }
 
 void stopRobot () {
-  setSpeed(0, 0);
+  digitalWrite (LM1, LOW);
+  digitalWrite (LM2, LOW);
+  digitalWrite (RM1, LOW);
+  digitalWrite (RM2, LOW);
 }
 
 void moveRight() {
@@ -56,10 +59,10 @@ void moveLeft() {
 void setLeftSpeed(float output) {
   float s = robotSpeed + output;
   if ( s > 0) {
-    setLeftDirection(1);
+    setLeftDirection(HIGH);
     analogWrite(LEFT_SPEED, s);
   } else {
-    setLeftDirection(0);
+    setLeftDirection(LOW);
     analogWrite(LEFT_SPEED, -s);
   }
 }
@@ -67,10 +70,10 @@ void setLeftSpeed(float output) {
 void setRightSpeed(float output) {
   float s = robotSpeed + output;
   if ( s > 0) {
-    setRightDirection(1);
+    setRightDirection(HIGH);
     analogWrite(RIGHT_SPEED, s);
   } else {
-    setRightDirection(0);
+    setRightDirection(LOW);
     analogWrite(RIGHT_SPEED, -s);
   }
 }
