@@ -3,6 +3,7 @@ void setupSerial() {
 }
 
 void handleCommand(char val) {
+  Serial.println(val);
   if (val == 'F') {
     moveForward();
   }
@@ -19,5 +20,11 @@ void handleCommand(char val) {
     stopRobot();
   }
 
+  else if (val>='0' && val <= '9'){
+    int v = val - '0';
+    v *=20;
+    Serial.println(v);
+    setSpeed(v, v);
+  }
 }
 

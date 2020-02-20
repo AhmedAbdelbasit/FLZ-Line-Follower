@@ -1,11 +1,11 @@
 #ifndef DC_MOTOR_DRIVER_H
 #define DC_MOTOR_DRIVER_H
 
-#define LEFT_SPEED 9
-#define RIGHT_SPEED 11
-#define LM1 4
-#define LM2 5
-#define RM1 6
+#define LEFT_SPEED 5
+#define RIGHT_SPEED 6
+#define LM1 3
+#define LM2 2
+#define RM1 4
 #define RM2 7
 
 void setupDCMotors();

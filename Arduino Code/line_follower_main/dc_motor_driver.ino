@@ -29,13 +29,13 @@ void setRightDirection(boolean d){
 }
 
 void moveForward () {
-  setLeftDirection(1);
-  setRightDirection(1);
+  setLeftDirection(HIGH);
+  setRightDirection(HIGH);
 }
 
 void moveBackward () {
-  setLeftDirection(0);
-  setRightDirection(0);
+  setLeftDirection(LOW);
+  setRightDirection(LOW);
 }
 
 void stopRobot () {
@@ -43,13 +43,13 @@ void stopRobot () {
 }
 
 void moveRight() {
-  setLeftDirection(1);
-  setRightDirection(0);
+  setLeftDirection(HIGH);
+  setRightDirection(LOW);
 }
 
 void moveLeft() {
-  setLeftDirection(0);
-  setRightDirection(1);
+  setLeftDirection(LOW);
+  setRightDirection(HIGH);
 }
 
 

@@ -3,7 +3,7 @@
 
 void setup(){
   setupDCMotors();
-  setupRadar();
+//  setupRadar();
   setupSerial();
 }
 
