@@ -1,9 +1,9 @@
 #include "line_sensor.h"
 
 #ifdef CALIBRATE
-int threshold[NUM_OF_SENSORS];
+  int threshold[NUM_OF_SENSORS];
 #else
-int threshold[NUM_OF_SENSORS] = {565, 212, 345, 227, 415};
+  int threshold[NUM_OF_SENSORS] = {565, 212, 345, 227, 415};
 #endif
 
 int currentError, lastLineError;

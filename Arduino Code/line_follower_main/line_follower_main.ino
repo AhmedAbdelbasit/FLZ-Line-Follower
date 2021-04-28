@@ -2,10 +2,19 @@
 #include "ultrasonic.h"
 #include "line_sensor.h"
 
-void setup(){
+//#define RADAR
+//#define CALIBRATE
+
+void setup() {
   setupDCMotors();
-  setupRadar();
   setupSerial();
-//  calibrateSensors();
+
+#ifdef RADAR
+  setupRadar();
+#endif
+
+#ifdef CALIBRATE
+  calibrateSensors();
+#endif
 }
 
